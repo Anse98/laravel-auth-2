@@ -25,7 +25,12 @@
                           <td class="py-3">
                               <a class="text-decoration-none btn btn-sm main-button-background" href="{{ route('admin.projects.show', $project->id) }}">{{$project->title}}</a>
                           </td>
-                          <td class="py-3"><span class="text-white-50">{{ $project->thumb }}</span></td>
+                          <td class="py-3">
+                            @if($project->thumb)
+                            <span class="text-white-50">{{ $project->thumb }}</span></td>
+                            @else 
+                            <span class="text-white-50">-</span>
+                            @endif
                           <td class="py-3"><span class="text-white-50">{{ $project->slug }}</span></td>
                           <td class="py-3"><span class="text-white-50">
                             {{isset($project->type) ? $project->type->name : '-'}}</span>

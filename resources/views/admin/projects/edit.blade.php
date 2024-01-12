@@ -4,7 +4,7 @@
     <section>
         <div class="container py-4">
             <h1 class="color-red pb-5">{{$project->title}}</h1>
-            <form action="{{ route('admin.projects.update', $project) }}" method="POST">
+            <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data">
                 
                 @csrf
                 @method('PUT')
@@ -26,8 +26,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="thumb" class="form-label color-grey">Url immagine</label>
-                    <input type="text" class="form-control text-bg-dark" name="thumb" id="thumb" placeholder="Url Immagine" value="{{old('thumb',$project->thumb)}}">
+                    <label for="thumb" class="form-label color-grey">Modifica Immagine</label>
+                    <input type="file" class="form-control text-bg-dark" name="thumb" id="thumb" value="{{old('thumb')}}">
                 </div>
 
                 <div class="mb-3">

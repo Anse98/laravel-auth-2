@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -44,17 +45,27 @@ class ProjectController extends Controller
     {
         $data = $request->all();
 
-        $valid = $request->validate([
+        $request->validate([
             'title' => 'required|max:255|string|unique:projects',
-            'thumb' => 'nullable|image',
+            'thumb' => [
+                'nullable',
+                File::image()
+                    ->min('1kb')
+                    ->max('10mb')
+            ],
             'description' => 'nullable|min:10|string',
             'type_id' => 'nullable|exists:types,id',
             'technology_id' => 'exists:technologies,id'
         ]);
 
-        dd($valid);
-
         $data['slug'] = Str::slug($data['title'], '-');
+
+        if ($request->hasFile('thumb')) {
+
+            $file_path = Storage::put('images', $request->thumb);
+
+            $data['thumb'] = $file_path;
+        }
 
         $new_project = Project::create($data);
 
@@ -94,7 +105,12 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => ['required', 'max:255', 'string', Rule::unique('projects')->ignore($project->id)],
-            'thumb' => 'required|file',
+            'thumb' => [
+                'nullable',
+                File::image()
+                    ->min('1kb')
+                    ->max('10mb')
+            ],
             'description' => 'nullable|min:10|string',
             'type_id' => 'nullable|exists:types,id',
             'technology_id' => 'exists:technologies,id'
@@ -104,6 +120,23 @@ class ProjectController extends Controller
         $data = $request->all();
 
         $data['slug'] = Str::slug($data['title'], '-');
+
+        if ($request->hasFile('thumb')) {
+
+            if ($project->thumb) {
+                Storage::delete($project->thumb);
+            }
+
+            $file_path = Storage::put('images', $request->thumb);
+
+            $data['thumb'] = $file_path;
+        } else {
+
+            Storage::delete($project->thumb);
+
+            $project->thumb = null;
+        }
+
 
         $project->update($data);
 
@@ -125,6 +158,8 @@ class ProjectController extends Controller
     {
 
         $project->technologies()->sync([]);
+
+        Storage::delete($project->thumb);
 
         $project->delete();
 

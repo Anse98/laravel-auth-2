@@ -9,6 +9,9 @@
             <h3 class="badge border mb-5"><a class="text-decoration-none text-light" href="{{route('admin.project_types.index')}}">{{ $project->type->name }}</a></h3>
             @endif
 
+            @if($project->thumb)
+            <img src="{{ asset('storage/'.$project->thumb)}}">
+            @endif
             <ul class="d-flex gap-2 ps-0">
               @foreach ($project->technologies as $technology)
                   <li class="badge rounded-pill text-bg-dark">{{$technology->name}}</li>
