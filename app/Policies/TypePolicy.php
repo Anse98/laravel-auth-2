@@ -13,7 +13,7 @@ class TypePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class TypePolicy
      */
     public function view(User $user, Type $type): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class TypePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class TypePolicy
      */
     public function update(User $user, Type $type): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class TypePolicy
      */
     public function delete(User $user, Type $type): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class TypePolicy
      */
     public function restore(User $user, Type $type): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class TypePolicy
      */
     public function forceDelete(User $user, Type $type): bool
     {
-        //
+        return true;
     }
 }

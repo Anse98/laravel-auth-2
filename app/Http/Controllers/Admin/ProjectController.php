@@ -9,6 +9,7 @@ use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 
 class ProjectController extends Controller
@@ -33,7 +34,7 @@ class ProjectController extends Controller
 
         $technologies = Technology::all();
 
-        return view('admin.projects.create', compact('types','technologies'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -43,14 +44,15 @@ class ProjectController extends Controller
     {
         $data = $request->all();
 
-        $request->validate([
+        $valid = $request->validate([
             'title' => 'required|max:255|string|unique:projects',
-            'thumb' => 'required|url',
+            'thumb' => 'nullable|image',
             'description' => 'nullable|min:10|string',
             'type_id' => 'nullable|exists:types,id',
             'technology_id' => 'exists:technologies,id'
         ]);
 
+        dd($valid);
 
         $data['slug'] = Str::slug($data['title'], '-');
 
@@ -59,9 +61,8 @@ class ProjectController extends Controller
         if ($request->has('technologies')) {
 
             $new_project->technologies()->attach($data['technologies']);
-
         }
-        
+
 
         return redirect()->route('admin.projects.show', $new_project->id);
     }
@@ -93,7 +94,7 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => ['required', 'max:255', 'string', Rule::unique('projects')->ignore($project->id)],
-            'thumb' => 'required|url',
+            'thumb' => 'required|file',
             'description' => 'nullable|min:10|string',
             'type_id' => 'nullable|exists:types,id',
             'technology_id' => 'exists:technologies,id'
@@ -109,11 +110,9 @@ class ProjectController extends Controller
         if ($request->has('technologies')) {
 
             $project->technologies()->sync($data['technologies']);
-
         } else {
 
             $project->technologies()->detach();
-
         }
 
         return redirect()->route('admin.projects.index');

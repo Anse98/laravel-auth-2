@@ -6,7 +6,7 @@
             <h1 class="color-red pb-2"> {{$project->title}}</h1>
 
             @if($project->type)
-            <h3 class="badge border mb-5">{{ $project->type->name }}</h3>
+            <h3 class="badge border mb-5"><a class="text-decoration-none text-light" href="{{route('admin.project_types.index')}}">{{ $project->type->name }}</a></h3>
             @endif
 
             <ul class="d-flex gap-2 ps-0">

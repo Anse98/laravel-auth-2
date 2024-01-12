@@ -4,7 +4,7 @@
     <section>
         <div class="container py-4">
             <h1 class="my-4 text-light">Crea il tuo progetto</h1>
-            <form action="{{ route('admin.projects.store') }}" method="POST">
+            <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/formdata">
                 
                 @csrf
 
@@ -29,8 +29,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="thumb" class="form-label color-grey">Url immagine</label>
-                    <input type="text" required class="form-control text-bg-dark" name="thumb" id="thumb" placeholder="Url Immagine" value="{{old('thumb')}}">
+                    <label for="thumb" class="form-label color-grey">Carica Immagine</label>
+                    <input type="file" required class="form-control text-bg-dark" name="thumb" id="thumb" value="{{old('thumb')}}">
                 </div>
 
                 <div class="mb-3">

@@ -27,11 +27,10 @@ class ProjectSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
 
-            
+
             $new_project = new Project();
 
             $new_project->title = $faker->sentence(3);
-            $new_project->thumb = $faker->imageUrl();
             $new_project->description = $faker->text();
             $new_project->slug = Str::slug($new_project->title, '-');
             $new_project->type_id = $faker->optional()->randomElement($ids);
@@ -39,7 +38,7 @@ class ProjectSeeder extends Seeder
             $new_project->save();
 
             $new_project->technologies()
-            ->attach($faker->randomElements($tech_ids, null));
+                ->attach($faker->randomElements($tech_ids));
         }
     }
 }

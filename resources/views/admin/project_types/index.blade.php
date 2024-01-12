@@ -21,7 +21,7 @@
 
                           <td class="py-3"><span class="color-red">{{ $type->id }}</span></td>
 
-                          <td class="py-3"><a class="text-decoration-none btn btn-sm main-button-background" href="">{{$type->name}}</a></td>
+                          <td class="py-3"><a class="text-decoration-none btn btn-sm main-button-background" href="{{route('admin.project_types.show', $type->id)}}">{{$type->name}}</a></td>
 
                           <td class="py-3"><span class="text-white-50">{{ $type->slug }}</span></td>
 
@@ -58,7 +58,7 @@
                     @empty
                         <tr>
                           <td colspan="4">
-                            Nessun progetto trovato
+                            Nessun tipo di progetto trovato
                           </td>
                         </tr>
                     @endforelse
@@ -70,13 +70,13 @@
 
     <script>
   
-        function deleteNotification(projectId) {
-          const deleteMenu = document.getElementById('modal-delete-' + projectId);
+        function deleteNotification(typeId) {
+          const deleteMenu = document.getElementById('modal-delete-' + typeId);
           deleteMenu.classList.add("d-block");
         }
       
-        function hideModal(projectId) {
-          const deleteMenu = document.getElementById('modal-delete-' + projectId);
+        function hideModal(typeId) {
+          const deleteMenu = document.getElementById('modal-delete-' + typeId);
       
           deleteMenu.classList.remove('d-block');
         }
