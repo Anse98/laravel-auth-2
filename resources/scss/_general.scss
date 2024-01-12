@@ -1,0 +1,74 @@
+//HEADER
+.header-logo {
+    width: 150px;
+}
+
+.navbar-nav .nav-link.show {
+    color: rgb(183, 180, 180);
+}
+
+.navbar-nav .nav-link.active {
+    color: rgb(183, 180, 180);
+}
+
+.dropdown-item:hover {
+    background-color: #212529;
+}
+
+
+// REGOLE GENERALI
+.bg-dark-grey {
+    background-color: #121212;
+}
+
+.color-red {
+    color: #DF6247;
+}
+
+.color-grey {
+    color: gray;
+}
+
+.color-light-grey {
+    color: rgb(183, 180, 180);
+}
+
+.color-light-grey {
+    &:hover {
+        color: rgb(161, 160, 160);
+    }
+}
+
+.main-button-background,
+.modify-button-bg,
+.delete-button-bg {
+    color: whitesmoke;
+}
+
+.main-button-background {
+    background-color: #1F2023;
+
+    &:hover {
+        background-color: #1f202386;
+    }
+}
+
+.btn-danger {
+    &:hover {
+        background-color: #bb2d3bae;
+        border-color: #bb2d3bae;
+    }
+}
+
+.modify-button-bg {
+    background-color: #F59D09;
+
+    &:hover {
+        background-color: #f59f09c4;
+    }
+}
+
+.dropdown-menu.dropdown-menu-right{
+    right: 0;
+    left: auto;
+}
