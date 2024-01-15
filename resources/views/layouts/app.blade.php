@@ -22,7 +22,7 @@
 <body>
     <div id="app">
 
-        <header class="position-sticky start-0 end-0 top-0">
+        <header class="position-sticky start-0 end-0 top-0 z-3">
             <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-azure m-0 p-0 bg-dark-grey border-bottom">
                 <div class="container">
                     <a class="navbar-brand d-flex align-items-center py-0" href="{{ url('/') }}">

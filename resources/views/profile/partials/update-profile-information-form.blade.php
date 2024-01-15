@@ -18,8 +18,8 @@
         @method('patch')
 
         <div class="mb-2">
-            <label for="name">{{__('Name')}}</label>
-            <input class="form-control" type="text" name="name" id="name" autocomplete="name" value="{{old('name', $user->name)}}" required autofocus>
+            <label for="name" class="color-grey">{{__('Name')}}</label>
+            <input class="form-control text-bg-dark" type="text" name="name" id="name" autocomplete="name" value="{{old('name', $user->name)}}" required autofocus>
             @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->get('name')}}</strong>
@@ -28,11 +28,11 @@
         </div>
 
         <div class="mb-2">
-            <label for="email">
+            <label for="email" class="color-grey">
                 {{__('Email') }}
             </label>
 
-            <input id="email" name="email" type="email" class="form-control" value="{{ old('email', $user->email)}}" required autocomplete="username" />
+            <input id="email" name="email" type="email" class="form-control text-bg-dark" value="{{ old('email', $user->email)}}" required autocomplete="username" />
 
             @error('email')
             <span class="alert alert-danger mt-2" role="alert">
@@ -60,7 +60,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-4">
-            <button class="btn btn-primary" type="submit">{{ __('Save') }}</button>
+            <button class="btn btn-sm main-button-background" type="submit">{{ __('Save') }}</button>
 
             @if (session('status') === 'profile-updated')
             <script>

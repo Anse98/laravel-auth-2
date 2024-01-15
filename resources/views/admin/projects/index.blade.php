@@ -39,7 +39,8 @@
                             <div class="d-flex gap-3 py-3">
   
                                 {{-- Pulsante modifica --}}
-                                <span><a href="{{route('admin.projects.edit', $project->id)}}" class="btn modify-button-bg btn-sm text-light">Modifica</a></span>
+                                <span><a href="{{route('admin.projects.edit',   $project->id)}}" class="btn modify-button-bg btn-sm text-light">Modifica</a>
+                                </span>
   
                                 {{-- Modale --}}
                                 <div class="index" id="modal-delete-{{ $project->id }}">

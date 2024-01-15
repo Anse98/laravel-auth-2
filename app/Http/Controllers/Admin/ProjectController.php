@@ -51,7 +51,7 @@ class ProjectController extends Controller
                 'nullable',
                 File::image()
                     ->min('1kb')
-                    ->max('10mb')
+                    ->max('35mb')
             ],
             'description' => 'nullable|min:10|string',
             'type_id' => 'nullable|exists:types,id',
@@ -109,7 +109,7 @@ class ProjectController extends Controller
                 'nullable',
                 File::image()
                     ->min('1kb')
-                    ->max('10mb')
+                    ->max('35mb')
             ],
             'description' => 'nullable|min:10|string',
             'type_id' => 'nullable|exists:types,id',
@@ -132,7 +132,9 @@ class ProjectController extends Controller
             $data['thumb'] = $file_path;
         } else {
 
-            Storage::delete($project->thumb);
+            if ($project->thumb) {
+                Storage::delete($project->thumb);
+            }
 
             $project->thumb = null;
         }
@@ -148,7 +150,7 @@ class ProjectController extends Controller
             $project->technologies()->detach();
         }
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.show', $project->id);
     }
 
     /**
@@ -159,7 +161,9 @@ class ProjectController extends Controller
 
         $project->technologies()->sync([]);
 
-        Storage::delete($project->thumb);
+        if ($project->thumb) {
+            Storage::delete($project->thumb);
+        }
 
         $project->delete();
 

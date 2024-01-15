@@ -18,7 +18,6 @@
                 <div>
                     <input type="submit" class="btn main-button-background text-light btn-sm p-2" value="Conferma Modifiche">
                 </div>
-
             </form>
 
             @if($errors->any())

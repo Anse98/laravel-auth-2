@@ -25,9 +25,11 @@
                     @endforeach
                 </div>
 
+                
+
                 <div class="mb-3">
                     <label for="thumb" class="form-label color-grey">Modifica Immagine</label>
-                    <input type="file" class="form-control text-bg-dark" name="thumb" id="thumb" value="{{old('thumb')}}">
+                    <input type="file" class="form-control text-bg-dark" name="thumb" id="thumb" value="{{$project->id}}">
                 </div>
 
                 <div class="mb-3">
